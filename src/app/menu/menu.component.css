@@ -1,0 +1,48 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+img.logo {
+    width: 40px;
+    margin-right: 10px;
+    height: auto;
+}
+
+.menu-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-navigation {
+    display: none;
+}
+
+.mobile-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    position: relative;
+}
+
+.menu-button {
+    padding: 2px;
+}
+
+.pattern-bg {
+    background-image: url('../../../src/assets/images/search-bg.jpg');
+    background-size: contain;
+    opacity: .55;
+    height: 10em;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-navigation {
+        display: none;
+    }
+    .mobile-navigation {
+        display: flex;
+    }
+}

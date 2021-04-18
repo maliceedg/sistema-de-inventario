@@ -1,0 +1,49 @@
+<mat-toolbar class="menu" color="primary">
+
+    <img class="logo" src="../../assets/images/logo-example.png" alt="Example logo">
+    <span>Sistema de Inventario</span>
+    <span class="spacer"></span>
+
+    <div class="menu-navigation">
+        <button class="menu-button" mat-button routerLink="/table" routerLinkActive="active">
+          <mat-icon>list</mat-icon> Ver Productos
+        </button>
+
+        <button class="" mat-button routerLink="/product" routerLinkActive="active">
+          <mat-icon style="align-self: center;">add_box</mat-icon> Agregar Producto
+        </button>
+
+        <button mat-raised-button color="basic" aria-label="Menu logout" routerLink="/login">
+            <span style="font-size: 18px; align-self: center;">Salir </span>
+            <mat-icon>person</mat-icon>
+        </button>
+    </div>
+
+    <div class="mobile-navigation">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Mobile menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" style="padding: 0;">
+            <div class="mobile-items" style="padding: 0 10px;">
+                <button class="menu-button" mat-button routerLink="/table" routerLinkActive="active">
+                    <mat-icon>list</mat-icon> Ver Productos
+                </button>
+                <mat-divider></mat-divider>
+
+                <button class="menu-button" mat-button routerLink="/product" routerLinkActive="active">
+                    <mat-icon style="align-self: center;">add_box</mat-icon> Agregar Producto
+                </button>
+                <mat-divider></mat-divider>
+
+                <button class="menu-button" mat-button color="basic" aria-label="Menu logout" routerLink="/login">
+                      <mat-icon>person</mat-icon> Salir
+                </button>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-menu>
+    </div>
+</mat-toolbar>
+
+
+<!-- Hero -->
+<div class="pattern-bg"></div>

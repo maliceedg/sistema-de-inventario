@@ -1,0 +1,13 @@
+.container {
+    background-image: url('../../assets/images/login-background.jpg');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    background-color: #000;
+    opacity: .30;
+}

@@ -1,0 +1,17 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+img.logo {
+    width: 40px;
+    height: auto;
+}
+
+.menu {
+    position: relative;
+}
+
+.component-container {
+    height: 100%;
+    padding-bottom: 20px;
+}
