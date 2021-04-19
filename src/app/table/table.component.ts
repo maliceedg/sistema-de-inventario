@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from '@auth0/auth0-angular';
+import { ConfigService } from "../services/config.service";
 
 export interface UserData {
   id: string;
@@ -25,14 +27,16 @@ const NAMES: string[] = [
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;
+
+  products = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(public auth: AuthService, private configService: ConfigService) {
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
@@ -40,9 +44,10 @@ export class TableComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(users);
   }
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.showProducts();
   }
 
   applyFilter(event: Event) {
@@ -52,6 +57,13 @@ export class TableComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  showProducts() {
+    this.configService.getProducts().subscribe((data: any[]) => {
+      this.products = data;
+      console.log(this.products);      
+    })
   }
 }
 

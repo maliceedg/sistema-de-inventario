@@ -5,17 +5,13 @@
     <span class="spacer"></span>
 
     <div class="menu-navigation">
-        <button class="menu-button" mat-button routerLink="/table" routerLinkActive="active">
-          <mat-icon>list</mat-icon> Ver Productos
+        <button *ngFor="let item of items" class="menu-button margin" mat-button routerLink="{{item.route}}" routerLinkActive="active">
+          <mat-icon>{{item.icon}}</mat-icon>{{item.text}}
         </button>
 
-        <button class="" mat-button routerLink="/product" routerLinkActive="active">
-          <mat-icon style="align-self: center;">add_box</mat-icon> Agregar Producto
-        </button>
-
-        <button mat-raised-button color="basic" aria-label="Menu logout" routerLink="/login">
-            <span style="font-size: 18px; align-self: center;">Salir </span>
-            <mat-icon>person</mat-icon>
+        <button mat-raised-button color="basic" (click)="logout()" aria-label="Menu logout">
+            <span style="font-size: 18;">Salir</span>
+            <mat-icon>person</mat-icon> 
         </button>
     </div>
 
@@ -25,17 +21,14 @@
         </button>
         <mat-menu #menu="matMenu" style="padding: 0;">
             <div class="mobile-items" style="padding: 0 10px;">
-                <button class="menu-button" mat-button routerLink="/table" routerLinkActive="active">
-                    <mat-icon>list</mat-icon> Ver Productos
-                </button>
-                <mat-divider></mat-divider>
+                <ng-container *ngFor="let item of items">
+                    <button class="menu-button" mat-button routerLink="{{item.route}}" routerLinkActive="active">
+                        <mat-icon>{{item.icon}}</mat-icon>{{item.text}}
+                      </button>
+                    <mat-divider></mat-divider>
+                </ng-container>
 
-                <button class="menu-button" mat-button routerLink="/product" routerLinkActive="active">
-                    <mat-icon style="align-self: center;">add_box</mat-icon> Agregar Producto
-                </button>
-                <mat-divider></mat-divider>
-
-                <button class="menu-button" mat-button color="basic" aria-label="Menu logout" routerLink="/login">
+                <button class="menu-button" mat-button color="basic" (click)="logout()" aria-label="Menu logout">
                       <mat-icon>person</mat-icon> Salir
                 </button>
                 <mat-divider></mat-divider>

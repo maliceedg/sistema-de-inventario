@@ -8,9 +8,14 @@ import { MenuComponent } from './menu/menu.component';
 import { TableComponent } from './table/table.component';
 import { ProductComponent } from './product/product.component';
 
+// Services
+import { ConfigService } from "./services/config.service";
+
 // Angular Imports
+import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from '@auth0/auth0-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,8 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -38,13 +43,14 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     // Angular Imports
-    FormsModule,
-    ReactiveFormsModule,
+    AppRoutingModule,
     AuthModule.forRoot({
       domain: 'dev-uuv-0nd3.us.auth0.com',
       clientId: 'YgpCSS3ve0myTLgcULShugLNks59Iroa'
     }),
-    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     // Material
     BrowserModule,
     BrowserAnimationsModule,
@@ -59,9 +65,10 @@ import { AppRoutingModule } from './app-routing.module';
     MatSidenavModule,
     MatSliderModule,
     MatTableModule,
+    MatTabsModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

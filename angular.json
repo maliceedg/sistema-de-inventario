@@ -65,7 +65,9 @@
                         "production": {
                             "browserTarget": "sistema-de-inventario:build:production"
                         }
-                    }
+                    },
+                    "sslKey": "ssl/server.key",
+                    "sslCert": "ssl/server.crt"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
