@@ -48,7 +48,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppRoutingModule,
     AuthModule.forRoot({
       domain: 'dev-uuv-0nd3.us.auth0.com',
-      clientId: 'YgpCSS3ve0myTLgcULShugLNks59Iroa'
+      clientId: 'YgpCSS3ve0myTLgcULShugLNks59Iroa',
+      redirectUri: `${window.location.origin}/sistema-de-inventario/table`
     }),
     FormsModule,
     HttpClientModule,

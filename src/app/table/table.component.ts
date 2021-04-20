@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
@@ -25,6 +25,7 @@ export class TableComponent implements AfterViewInit, OnInit {
 
   products = [];
   isLoading = true;
+  mobile = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -40,10 +41,14 @@ export class TableComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.refreshData();
   }
-
+  
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    
+    if (window.screen.width < 420) { // 768px portrait
+      this.mobile = true;
+    }
   }
 
   applyFilter(event: Event) {

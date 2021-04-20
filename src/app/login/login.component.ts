@@ -41,6 +41,6 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     // Call this to redirect the user to the login page
-    this.auth.loginWithRedirect({redirect_uri: `${this.doc.location.origin}/table`});
+    this.auth.loginWithRedirect();
   }
 }

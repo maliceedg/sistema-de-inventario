@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
 
   logout(): void {
     // Call this to redirect the user to the login page
-    this.auth.logout({ returnTo: `${this.doc.location.origin}/login` });
+    this.auth.logout({ returnTo: `${this.doc.location.origin}/sistema-de-inventario/login` });
   }
 
 }
