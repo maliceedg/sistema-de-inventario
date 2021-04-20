@@ -8,10 +8,10 @@ import { TableComponent } from "./table/table.component";
 import { ProductComponent } from "./product/product.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/table', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent },
-  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
-  { path: 'product', component: ProductComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'sistema-de-inventario/table', pathMatch: 'full'},
+  { path: 'sistema-de-inventario/login', component: LoginComponent },
+  { path: 'sistema-de-inventario/table', component: TableComponent, canActivate: [AuthGuard] },
+  { path: 'sistema-de-inventario/product', component: ProductComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
