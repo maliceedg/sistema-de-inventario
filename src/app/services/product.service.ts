@@ -9,13 +9,23 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigService {
-  private url = 'https://fakestoreapi.com/products';
+export class ProductService {
 
   constructor(private http: HttpClient) { }
 
   getProducts() {
-    return this.http.get(this.url);
+    const url = 'http://localhost:8000/products/';
+    return this.http.get(url);
+  }
+
+  createProduct(product) {
+    const url = 'http://localhost:8000/products/';
+    return this.http.post(url, product);
+  }
+
+  deleteProduct(id) {
+    const url = `http://localhost:8000/products/${id}`;
+    return this.http.delete(url, id);
   }
 }
 

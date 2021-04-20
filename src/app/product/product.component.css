@@ -2,15 +2,20 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 20px;
-    width: auto;
+    text-align: center;
+    width: 100%;
 }
 
 .form-container {
-    background-color: #fff;
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.form-center {
+    align-self: center;
+    background-color: #fff;
+    border-radius: 5px;
     overflow: hidden;
     width: 420px;
 }

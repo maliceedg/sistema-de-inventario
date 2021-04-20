@@ -11,7 +11,12 @@ table {
 
 td,
 th {
-    width: 25%;
+    width: 19%;
+}
+
+td,
+th:last-child {
+    width: 5%;
 }
 
 .table-container {
@@ -26,4 +31,14 @@ th {
     opacity: .55;
     height: 10em;
     width: 100%;
+}
+
+.warning {
+    color: #ffbb33;
+    font-weight: 700;
+}
+
+.danger {
+    color: #ff4444;
+    font-weight: 700;
 }

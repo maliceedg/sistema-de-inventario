@@ -9,7 +9,7 @@ import { TableComponent } from './table/table.component';
 import { ProductComponent } from './product/product.component';
 
 // Services
-import { ConfigService } from "./services/config.service";
+import { ProductService } from "./services/product.service";
 
 // Angular Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +29,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -64,11 +66,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
   ],
-  providers: [ConfigService],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

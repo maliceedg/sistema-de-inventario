@@ -1,9 +1,10 @@
-import { OnInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '@auth0/auth0-angular';
-import { ConfigService } from "../services/config.service";
+import { ProductService } from "../services/product.service";
 
 export interface UserData {
   id: string;
@@ -12,42 +13,37 @@ export interface UserData {
   color: string;
 }
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+export class TableComponent implements AfterViewInit, OnInit {
+
+  displayedColumns: string[] = ['id', 'name', 'number', 'date', 'category', 'price', 'delete'];
   dataSource: MatTableDataSource<UserData>;
 
   products = [];
+  isLoading = true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public auth: AuthService, private configService: ConfigService) {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-
+  constructor(
+    public auth: AuthService,
+    private productService: ProductService,
+    private _snackBar: MatSnackBar) {
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource([]);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.refreshData();
+  }
+
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.showProducts();
   }
 
   applyFilter(event: Event) {
@@ -59,23 +55,28 @@ export class TableComponent implements OnInit {
     }
   }
 
-  showProducts() {
-    this.configService.getProducts().subscribe((data: any[]) => {
-      this.products = data;
-      console.log(this.products);      
-    })
+  refreshData() {
+    this.isLoading = true;
+    this.productService.getProducts().subscribe((products) => {
+      this.dataSource.data = products as any;
+      this.isLoading = false;
+    },
+      error => this.isLoading = false
+    );
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+  deleteProduct(id) {
+    this.productService.deleteProduct(id).subscribe((response) => {
+      this.openSnackBar('El producto se ha eliminado con éxito', 'Cerrar');
+      this.refreshData();
+    });
+  }
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2500,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+    });
+  }
 }
