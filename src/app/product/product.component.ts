@@ -10,7 +10,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  categories = [
+  categoriesNew = [
     { id: 1, name: 'Granos' },
     { id: 2, name: 'Vegetales' },
     { id: 3, name: 'Frutas' },
@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
     { id: 9, name: 'Especias' }
   ]
 
-  oldCategories = [
+  categories = [
     { id: 1, name: 'Arrocera' },
     { id: 2, name: 'Cafetera' },
     { id: 3, name: 'Corneta/Altavoz' },
