@@ -12,7 +12,7 @@ export class ProductComponent implements OnInit {
 
   categories = [
     { id: 1, name: 'Granos' },
-    { id: 2, name: 'Vegtales' },
+    { id: 2, name: 'Vegetales' },
     { id: 3, name: 'Frutas' },
     { id: 4, name: 'Lácteos' },
     { id: 5, name: 'Carnes' },
