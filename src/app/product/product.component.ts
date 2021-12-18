@@ -11,6 +11,19 @@ import { ProductService } from '../services/product.service';
 export class ProductComponent implements OnInit {
 
   categories = [
+    { id: 1, name: 'Granos' },
+    { id: 2, name: 'Vegtales' },
+    { id: 3, name: 'Frutas' },
+    { id: 4, name: 'Lácteos' },
+    { id: 5, name: 'Carnes' },
+    { id: 6, name: 'Proteínas' },
+    { id: 7, name: 'Enlatados' },
+    { id: 8, name: 'Snacks' },
+    { id: 9, name: 'Dulces' },
+    { id: 9, name: 'Especias' }
+  ]
+
+  oldCategories = [
     { id: 1, name: 'Arrocera' },
     { id: 2, name: 'Cafetera' },
     { id: 3, name: 'Corneta/Altavoz' },
